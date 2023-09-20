@@ -34,7 +34,7 @@ const renderCareers= async () => {
         })
     } else {
         const message = document.createElement('h2')
-        message.textContent = 'No Careers Available 😞'
+        message.textContent = 'No Careers Available '
         mainContent.appendChild(message)
     }
 }
@@ -42,10 +42,11 @@ const renderCareer = async () => {
     const requestedID = parseInt(window.location.href.split('/').pop())
     const response = await fetch('/creators')
     const data = await response.json()
-    const creatorContent = document.getElementById('gift-content')
+    const creatorContent = document.getElementById('career-content')
     let career
     career = data.find(c => c.id === requestedID)
     if (career) {
+        
         document.getElementById('image').src = career.image
         document.getElementById('name').textContent = career.name
         document.getElementById('submittedBy').textContent = 'Submitted by: ' + career.submittedBy
@@ -53,11 +54,11 @@ const renderCareer = async () => {
         document.getElementById('audience').textContent = 'Great For: ' + career.audience
         document.getElementById('description').textContent = career.description
         document.title = `Creative - ${career.name}`
+
     }
     else {
         const message = document.createElement('h2')
         document.getElementById('image').src = "https://64.media.tumblr.com/75078756a0acf675edebccd6a3d8f3cf/cd9b284ddee27079-98/s500x750/ccf7c9f6cebc0b62c5a6917ffec97ef27ed1d7ca.gif"
-        creatorContent.appendChild(message) 
     }
 }
 

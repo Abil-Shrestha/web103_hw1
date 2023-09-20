@@ -148,7 +148,7 @@ main {
 
 /* Detail Page CSS*/
 
-.gift-info {
+.career-info {
   display: flex;
   flex-direction: row;
 }
@@ -162,6 +162,6 @@ main {
   width: 80%;
 }
 
-.gift-details {
+.career-details {
   width: 45vw;
 }
