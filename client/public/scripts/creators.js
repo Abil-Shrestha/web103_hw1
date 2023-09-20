@@ -34,7 +34,7 @@ const renderCareers= async () => {
         })
     } else {
         const message = document.createElement('h2')
-        message.textContent = 'No Careers Available '
+        message.textContent = 'No Careers Available 😞'
         mainContent.appendChild(message)
     }
 }
@@ -42,7 +42,7 @@ const renderCareer = async () => {
     const requestedID = parseInt(window.location.href.split('/').pop())
     const response = await fetch('/creators')
     const data = await response.json()
-    const creatorContent = document.getElementById('career-content')
+    const creatorContent = document.getElementById('gift-content')
     let career
     career = data.find(c => c.id === requestedID)
     if (career) {
@@ -54,7 +54,6 @@ const renderCareer = async () => {
         document.getElementById('audience').textContent = 'Great For: ' + career.audience
         document.getElementById('description').textContent = career.description
         document.title = `Creative - ${career.name}`
-
     }
     else {
         const message = document.createElement('h2')
@@ -72,10 +71,13 @@ const isKnownRoute = knownRoutes.some(route => {
         return route.test(currentPath);
     }
 });
+
+if (currentPath === knownRoutes[0]){
+    renderCareers()
+}
 if (!isKnownRoute) {
     window.location.href = '/404.html';
 }
-renderCareers()
 renderCareer()
 
 
