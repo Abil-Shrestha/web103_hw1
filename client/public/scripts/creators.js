@@ -15,7 +15,7 @@ const renderCareers= async () => {
             name.textContent = career.name
             bottomContainer.appendChild(name)
             const salaryRange = document.createElement('p')
-            salaryRange.textContent = 'Salary: ' + career.salaryRange
+            salaryRange.textContent = 'Salary: ' + career.salaryrange
             bottomContainer.appendChild(salaryRange)
             const audience = document.createElement('p')
             audience.textContent = 'Great For: ' + career.audience
@@ -49,8 +49,8 @@ const renderCareer = async () => {
         
         document.getElementById('image').src = career.image
         document.getElementById('name').textContent = career.name
-        document.getElementById('submittedBy').textContent = 'Submitted by: ' + career.submittedBy
-        document.getElementById('salaryRange').textContent = 'Salary Range: ' + career.salaryRange
+        document.getElementById('submittedBy').textContent = 'Submitted by: ' + career.submittedby
+        document.getElementById('salaryRange').textContent = 'Salary Range: ' + career.salaryrange
         document.getElementById('audience').textContent = 'Great For: ' + career.audience
         document.getElementById('description').textContent = career.description
         document.title = `Creative - ${career.name}`

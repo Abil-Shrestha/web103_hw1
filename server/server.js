@@ -1,12 +1,14 @@
 import express from 'express';
+import dotenv from 'dotenv'
 import creatorRouter from './routes/creators.js';
+
 const app = express();
 
 app.use('/public',express.static('./public'))
 app.use('/scripts',express.static('./public/scripts'))
 
 app.get('/',(req,res) => {
-    res.status(200).send('<h1 style="text-align: center; margin-top: 50px;"> HW 1</h1>')
+    res.status(200).send('<h1 style="text-align: center; margin-top: 50px;"> HW 2</h1>')
 })
 app.use('/creators', creatorRouter)
 
