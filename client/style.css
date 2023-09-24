@@ -18,6 +18,12 @@
   height: 40px;
   width: 380px;
 }
+.header-middle {
+  float: none;
+  display:flex;
+  height: 40px;
+  width: 380px;
+}
 
 .header-left img {
   padding-top: 8px;
@@ -164,4 +170,14 @@ main {
 
 .career-details {
   width: 45vw;
+}
+
+.search-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom:30px;
+}
+.search-bar{
+  width:650px;
 }

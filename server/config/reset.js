@@ -32,7 +32,7 @@ const seedCareersTable = async () => {
     creatorData.forEach ((careers) => {
 
         const insertQuery = {
-            text: 'INSERT INTO careers (name, image, description, submittedBy, submittedOn, salaryRange, audience) VALUES (1, 2, 3, 4, 5, 6, 7) '
+            text: 'INSERT INTO careers (name, image, description, submittedBy, submittedOn, salaryRange, audience) VALUES ($1, $2, $3, $4, $5, $6, $7) '
           }
         const values = [
             careers.name,

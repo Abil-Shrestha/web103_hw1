@@ -6,6 +6,7 @@ headerContainer.className = 'header-container'
 const headerLeft = document.createElement('div')
 headerLeft.className = 'header-left'
 
+
 const headerLogo = document.createElement('img')
 headerLogo.src = '/logo.png'
 headerLogo.addEventListener('click', function handleClick(event) {
