@@ -1,58 +1,91 @@
-import { pool } from './database.js'
-import '../config/dotenv.js'
-import creatorData from '../data/creators.js'
+import "./dotenv.js"
+import { pool } from "./database.js"
+import eventsData from "../data/events.js"
+import locationsData from "../data/locations.js"
 
-const createCareersTable = async () => {
+const createLocationsTable = async () => {
+  const createTableQuery = `
+    DROP TABLE IF EXISTS locations;
 
-    const createTableQuery = `
-    DROP TABLE IF EXISTS careers;
-
-    CREATE TABLE IF NOT EXISTS careers (
-        id SERIAL PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        image VARCHAR(255) NOT NULL,
-        description VARCHAR(255) NOT NULL,
-        submittedBy VARCHAR(255) NOT NULL,
-        submittedOn VARCHAR(255) NOT NULL,
-        salaryRange VARCHAR(255) NOT NULL,
-        audience VARCHAR(255) NOT NULL
+    CREATE TABLE IF NOT EXISTS locations (
+      id SERIAL PRIMARY KEY,
+      venue_name TEXT NOT NULL,
+      venue_address TEXT NOT NULL,
+      image TEXT NOT NULL
     )
-`
-    try{
-        const res = await pool.query(createTableQuery)
-        console.log('Careers table created successfully')
-    } catch {
-        console.error('Error creating table')
+  `
+
+  try {
+    const res = await pool.query(createTableQuery)
+    console.log("🎉 locations table created successfully")
+  } catch (err) {
+    console.error("⚠️ error creating locations table", err)
+  }
+}
+
+const createEventsTable = async () => {
+  const createTableQuery = `
+    DROP TABLE IF EXISTS events;
+
+    CREATE TABLE IF NOT EXISTS events (
+      id SERIAL PRIMARY KEY,
+      title TEXT NOT NULL,
+      datetime timestamp NOT NULL,
+      image text NOT NULL,
+      location integer NOT NULL
+    )
+  `
+
+  try {
+    const res = await pool.query(createTableQuery)
+    console.log("🎉 events table created successfully")
+  } catch (err) {
+    console.error("⚠️ error creating events table", err)
+  }
+}
+
+const seedTables = async () => {
+  await createLocationsTable()
+  await createEventsTable()
+
+  locationsData.forEach((location) => {
+    const insertQuery = {
+      text: "INSERT INTO locations (id, venue_name, venue_address, image) VALUES ($1, $2, $3, $4)",
     }
 
-}
+    const values = [
+      location.id,
+      location.venue_name,
+      location.venue_address,
+      location.image,
+    ]
 
-const seedCareersTable = async () => {
-    await createCareersTable()
-    creatorData.forEach ((careers) => {
+    pool.query(insertQuery, values, (err, res) => {
+      if (err) {
+        console.error("⚠️ error inserting location", err)
+        return
+      }
 
-        const insertQuery = {
-            text: 'INSERT INTO careers (name, image, description, submittedBy, submittedOn, salaryRange, audience) VALUES ($1, $2, $3, $4, $5, $6, $7) '
-          }
-        const values = [
-            careers.name,
-            careers.image,
-            careers.description,
-            careers.submittedBy,
-            careers.submittedOn,
-            careers.salaryRange,
-            careers.audience
-        ]
-
-        pool.query(insertQuery,values,(err,res) => {
-            if(err) {
-                console.error('Error inserting Career',err)
-                return
-            }
-
-            console.log(`${careers.name} added successfully`)
-        })
+      console.log(`✅ ${location.venue_name} added successfully`)
     })
+  })
+
+  eventsData.forEach((event) => {
+    const insertQuery = {
+      text: "INSERT INTO events (title, datetime, image, location) VALUES ($1, $2, $3, $4)",
+    }
+
+    const values = [event.title, event.datetime, event.image, event.location]
+
+    pool.query(insertQuery, values, (err, res) => {
+      if (err) {
+        console.error("⚠️ error inserting event", err)
+        return
+      }
+
+      console.log(`✅ ${event.title} added successfully`)
+    })
+  })
 }
 
-seedCareersTable()
+seedTables()

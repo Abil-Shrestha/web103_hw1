@@ -1,0 +1,15 @@
+.events {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.event-filters{
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 90vw;
+  display: flex;
+  margin: 10px;
+  gap:20px;
+}
