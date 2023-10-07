@@ -33,7 +33,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='/hw_1/client/public/hw3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Abil-Shrestha/web103_hw1/blob/project_3/client/public/hw3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [LiceCap](https://www.cockos.com/licecap/)
