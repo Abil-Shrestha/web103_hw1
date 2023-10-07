@@ -40,7 +40,7 @@ GIF created with [LiceCap](https://www.cockos.com/licecap/)
 
 ## Notes
 
-Having only single package json on the started was confusing. Debugging API issue was challenging aswell.
+Having only single package.json on the starter code was confusing. I ran into a lot of issues while filtering data and matching location id had to restructure the entire data quite a few time.
 
 ## License
 
